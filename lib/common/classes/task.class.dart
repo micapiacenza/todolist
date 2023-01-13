@@ -1,14 +1,20 @@
 import '../enums/task_priority.dart';
 
-class Task {
-  late int id;
-  late String task;
-  late TaskPriority priority;
-  late bool isComplete = false;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Task({
-    required this.id,
-    required this.task,
-    required this.priority,
-  });
+part 'task.class.freezed.dart';
+part 'task.class.g.dart';
+
+@freezed
+class Task with _$Task {
+  const factory Task({
+    required String id,
+    required String task,
+    required TaskPriority priority,
+    required bool isComplete,
+  }) = _Task;
+
+
+
+  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }
