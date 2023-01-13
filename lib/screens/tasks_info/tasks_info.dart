@@ -14,6 +14,7 @@ class TasksInfo extends StatelessWidget {
       child: Column(
         children: [
           Text('Total Tasks: x'),
+          gapH16,
           Text('Total Completed Tasks: y'),
         ],
       ),
