@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/enums/task_priority.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todolist/common/theme/theme.dart';
+import 'package:todolist/screens/tasks_info/tasks_info.dart';
 
-import '../../common/classes/task.class.dart';
 import '../../common/constants/app_sizes.dart';
+import '../../common/providers/providers.dart';
 import '../../common/widgets/task_item.dart';
 import '../new_task/new_task.dart';
 
-class TasksList extends StatelessWidget {
+class TasksList extends ConsumerWidget {
   const TasksList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final List<Task> tasks = [
-      Task(id: 1, task: 'Make Coffee', priority: TaskPriority.low),
-      Task(id: 1, task: 'Make Coffee', priority: TaskPriority.low),
-      Task(id: 1, task: 'Make Coffee', priority: TaskPriority.low),
-      Task(id: 1, task: 'Make Coffee', priority: TaskPriority.low),
-      Task(id: 1, task: 'Make Coffee', priority: TaskPriority.low),
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tasks = ref.watch(taskListProvider);
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ListView.separated(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: tasks.length,
-            separatorBuilder: (context, position) => dividerGrey,
-            itemBuilder: (context, position) => TaskItem(task: tasks[position]),
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: tasks.length,
+                separatorBuilder: (context, position) => dividerGrey,
+                itemBuilder: (context, position) => TaskItem(task: tasks[position]),
+              ),
+            ],
           ),
-          ButtonPannel(),
-        ],
-      ),
+        ),
+        Positioned(
+          right: 5,
+            bottom: 8,
+            child: ButtonPannel()),
+      ],
     );
   }
 }
@@ -43,21 +46,32 @@ class ButtonPannel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
-      child: Row(
+      child: Column(
         children: [
-          FloatingActionButton(
-            onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => NewTask()
+          Container(
+            height: 40,
+            width: 40,
+            child: FloatingActionButton(
+              backgroundColor: lightTheme.primaryColor,
+              onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => NewTask()
+              ),
+              child: Icon(Icons.add),
             ),
-            child: Icon(Icons.add),
           ),
-          FloatingActionButton(
-            onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => NewTask()
+          gapH12,
+          Container(
+            height: 40,
+            width: 40,
+            child: FloatingActionButton(
+              backgroundColor: lightTheme.primaryColor,
+              onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => TasksInfo()
+              ),
+              child: Icon(Icons.info_outlined),
             ),
-            child: Icon(Icons.info_outlined),
           )
         ],
       ),
