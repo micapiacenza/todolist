@@ -9,16 +9,9 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Todo List'),
-          ),
-          body: ResponsiveLayout(
-            mobileBody: MobileBody(),
-            desktopBody: DesktopBody(),
-          )
-        )
+    return ResponsiveLayout(
+      mobileBody: MobileBody(),
+      desktopBody: DesktopBody(),
     );
   }
 }
