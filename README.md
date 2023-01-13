@@ -12,4 +12,9 @@ State Management: https://riverpod.dev/
 
 This app is supported for Android, iOS & Web.
 
+## How to run:
+
+For freezed classes, run the following command:
+flutter pub run build_runner build --delete-conflicting-outputs
+
 
