@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todolist/common/classes/task.class.dart';
 import 'package:todolist/common/services/task.service.dart';
 import 'package:todolist/common/theme/theme.dart';
 
@@ -81,14 +80,6 @@ class ButtonPannel extends ConsumerWidget {
             child: FloatingActionButton(
               backgroundColor: lightTheme.primaryColor,
               onPressed: () async {
-                // final t = Task(id: '2', name: 'Do my bed', priority: TaskPriority.high, isComplete: false);
-                // await TaskService().create(t);
-                // ref.read(taskListProvider(TaskListType.all).notifier).append(t);
-                // print(t);
-
-                // final items = await TaskService().list();
-                // print(items);
-
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => NewTask()
