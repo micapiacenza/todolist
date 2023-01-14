@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:todolist/common/enums/task_priority.dart';
+import 'package:todolist/common/enums/task.enum.dart';
 import 'package:todolist/common/providers/task_list_provider.dart';
 import 'package:todolist/common/services/task.service.dart';
 import 'package:todolist/screens/all_tasks/all_tasks.dart';

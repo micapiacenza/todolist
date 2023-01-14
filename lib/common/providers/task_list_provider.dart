@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todolist/common/enums/task_priority.dart';
 
 import '../classes/task.class.dart';
+import '../enums/task.enum.dart';
 import '../services/task.service.dart';
-
-enum TaskListType { all, completed }
 
 /// Tasks Provider
 class TaskListProvider extends StateNotifier<List<Task>> {

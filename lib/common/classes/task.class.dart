@@ -1,4 +1,4 @@
-import '../enums/task_priority.dart';
+import '../enums/task.enum.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 

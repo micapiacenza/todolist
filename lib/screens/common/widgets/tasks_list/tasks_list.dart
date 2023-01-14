@@ -5,7 +5,7 @@ import 'package:todolist/common/services/task.service.dart';
 import 'package:todolist/common/theme/theme.dart';
 
 import '../../../../common/constants/app_sizes.dart';
-import '../../../../common/enums/task_priority.dart';
+import '../../../../common/enums/task.enum.dart';
 import '../../../../common/providers/task_list_provider.dart';
 import '../../../../common/widgets/snack_error.dart';
 import '../../../../common/widgets/task_item.dart';
