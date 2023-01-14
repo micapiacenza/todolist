@@ -21,7 +21,7 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Task {
   String get id => throw _privateConstructorUsedError;
-  String get task => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   TaskPriority get priority => throw _privateConstructorUsedError;
   bool get isComplete => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call({String id, String task, TaskPriority priority, bool isComplete});
+  $Res call({String id, String name, TaskPriority priority, bool isComplete});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @override
   $Res call({
     Object? id = null,
-    Object? task = null,
+    Object? name = null,
     Object? priority = null,
     Object? isComplete = null,
   }) {
@@ -61,9 +61,9 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      task: null == task
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       priority: null == priority
           ? _value.priority
@@ -83,7 +83,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$_TaskCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String task, TaskPriority priority, bool isComplete});
+  $Res call({String id, String name, TaskPriority priority, bool isComplete});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
   @override
   $Res call({
     Object? id = null,
-    Object? task = null,
+    Object? name = null,
     Object? priority = null,
     Object? isComplete = null,
   }) {
@@ -105,9 +105,9 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      task: null == task
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       priority: null == priority
           ? _value.priority
@@ -126,7 +126,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
 class _$_Task implements _Task {
   const _$_Task(
       {required this.id,
-      required this.task,
+      required this.name,
       required this.priority,
       required this.isComplete});
 
@@ -135,7 +135,7 @@ class _$_Task implements _Task {
   @override
   final String id;
   @override
-  final String task;
+  final String name;
   @override
   final TaskPriority priority;
   @override
@@ -143,7 +143,7 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, task: $task, priority: $priority, isComplete: $isComplete)';
+    return 'Task(id: $id, name: $name, priority: $priority, isComplete: $isComplete)';
   }
 
   @override
@@ -152,7 +152,7 @@ class _$_Task implements _Task {
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.task, task) || other.task == task) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
             (identical(other.isComplete, isComplete) ||
@@ -161,7 +161,7 @@ class _$_Task implements _Task {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, task, priority, isComplete);
+  int get hashCode => Object.hash(runtimeType, id, name, priority, isComplete);
 
   @JsonKey(ignore: true)
   @override
@@ -180,7 +180,7 @@ class _$_Task implements _Task {
 abstract class _Task implements Task {
   const factory _Task(
       {required final String id,
-      required final String task,
+      required final String name,
       required final TaskPriority priority,
       required final bool isComplete}) = _$_Task;
 
@@ -189,7 +189,7 @@ abstract class _Task implements Task {
   @override
   String get id;
   @override
-  String get task;
+  String get name;
   @override
   TaskPriority get priority;
   @override

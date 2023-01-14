@@ -20,12 +20,12 @@ class TaskItem extends StatelessWidget {
         onDismissed: (_) async {
           await TaskService().delete(task.id);
           ScaffoldMessenger.of(context).showSnackBar(
-           SnackError(message: 'Task ${task.task} has been removed')
+           SnackError(message: 'Task ${task.name} has been removed')
           );
         },
         child: Container(
           padding: const EdgeInsets.all(10),
-          color: lightTheme.cardColor,
+          color: lightTheme.canvasColor,
           child: Row(
             children: [
             Checkbox(
@@ -33,10 +33,9 @@ class TaskItem extends StatelessWidget {
             value: true,
             onChanged: (bool? value) {
                 value = value!;
-              }
-              ),
+               }),
               gapW12,
-              Text('Task name ${task.task}'),
+              Text('${task.name}'),
             ],
           ),
         ),

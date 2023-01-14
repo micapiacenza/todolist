@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:todolist/common/enums/task_priority.dart';
-import 'package:todolist/common/widgets/snack_error.dart';
+import 'package:todolist/common/providers/task_list_provider.dart';
+import 'package:todolist/common/services/task.service.dart';
+import 'package:todolist/screens/all_tasks/all_tasks.dart';
 import 'package:todolist/screens/completed_tasks_list/completed_tasks_list.dart';
-import 'package:todolist/screens/tasks_list/tasks_list.dart';
 
 import '../classes/task.class.dart';
 
-// Screens Index Provider
+/// Screens Index Provider
 final StateProvider<int> indexProvider = StateProvider<int>((_) => 0);
 
 final List<Widget> _screens = [
-  TasksList(),
+  AllTasks(),
   CompletedTasksList(),
 ];
 
@@ -26,55 +27,15 @@ final StateProvider<Widget> bodyProvider = StateProvider<Widget>((ref) {
   return _screens[index];
 });
 
-// Tasks Provider
-class TaskListProvider extends StateNotifier<List<Task>> {
-  TaskListProvider() : super([]);
-  init() {
-    state = [
-      Task(id: '1', task: 'task 1', priority: TaskPriority.low, isComplete: false)
-    ];
-  }
 
-  void add(Task task) {
-    state = [...state, task];
-  }
-
-  void delete(String id) {
-    state = state.where((task) => task.id != id).toList();
-  }
-
-  void markAsComplete(String id) {
-    state = state.map((task) {
-      if (task.id == id) {
-        return task.copyWith(isComplete: true);
-      }
-      return task;
-    }).toList();
-  }
-
-  void setPriority(String id, TaskPriority priority) {
-    state = state.map((task) {
-      if (task.id == id) {
-        return task.copyWith(priority: priority);
-      }
-      return task;
-    }).toList();
-  }
-}
-
-final taskListProvider = StateNotifierProvider<TaskListProvider, List<Task>>((ref) {
-  final taskListProvider = TaskListProvider();
-  taskListProvider.init();
-  return taskListProvider;
-});
-
+/// Task Form Provider
 class TaskFormProvider extends StateNotifier<Task> {
  late final Ref ref;
  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
  final TextEditingController taskController = TextEditingController();
 
   TaskFormProvider(this.ref, Task model) : super(model) {
-    taskController.text = model.task;
+    taskController.text = model.name;
   }
 
   String? taskValidator(String? value) {
@@ -88,8 +49,14 @@ class TaskFormProvider extends StateNotifier<Task> {
     if (!formKey.currentState!.validate()) {
       return null;
     }
-    // TODO: Create with hive
+    final success = await TaskService().create(state);
+    if (success) {
+      //append to list
+      // ref.read(taskListProvider.notifier).add(state);
+      return true;
+    }
+    return success;
   }
 }
 
-final StateNotifierProvider<TaskFormProvider, Task> taskFormProvider = StateNotifierProvider<TaskFormProvider, Task>((ref) => TaskFormProvider(ref, Task(id: '0', task: '', isComplete: false, priority: TaskPriority.low)));
+final StateNotifierProvider<TaskFormProvider, Task> taskFormProvider = StateNotifierProvider<TaskFormProvider, Task>((ref) => TaskFormProvider(ref, Task(id: '0', name: '', isComplete: false, priority: TaskPriority.low)));

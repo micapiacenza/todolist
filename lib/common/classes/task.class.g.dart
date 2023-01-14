@@ -8,14 +8,14 @@ part of 'task.class.dart';
 
 _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       id: json['id'] as String,
-      task: json['task'] as String,
+      name: json['name'] as String,
       priority: $enumDecode(_$TaskPriorityEnumMap, json['priority']),
       isComplete: json['isComplete'] as bool,
     );
 
 Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'id': instance.id,
-      'task': instance.task,
+      'name': instance.name,
       'priority': _$TaskPriorityEnumMap[instance.priority]!,
       'isComplete': instance.isComplete,
     };

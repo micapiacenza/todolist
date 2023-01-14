@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todolist/common/constants/app_sizes.dart';
 import 'package:todolist/common/widgets/snack_error.dart';
 
-import '../../common/providers/providers.dart';
-import '../../common/widgets/common_dialog.dart';
+import '../../../../common/providers/providers.dart';
+import '../../../../common/widgets/common_dialog.dart';
 
 class NewTask extends ConsumerWidget {
   const NewTask({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class NewTask extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final taskprovider = ref.watch(taskFormProvider.notifier);
+
     return CommonDialog(
       title: 'New Task',
       functionOk: () async {

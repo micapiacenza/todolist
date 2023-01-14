@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/all_tasks/all_tasks.dart';
 import '../../screens/completed_tasks_list/completed_tasks_list.dart';
-import '../../screens/tasks_list/tasks_list.dart';
 import '../theme/theme.dart';
 
 class DesktopBody extends StatelessWidget {
@@ -27,7 +27,7 @@ class DesktopBody extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              TasksList(),
+              AllTasks(),
               CompletedTasksList()
             ],
           ),

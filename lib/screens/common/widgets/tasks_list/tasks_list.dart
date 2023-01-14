@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todolist/common/theme/theme.dart';
-import 'package:todolist/screens/tasks_info/tasks_info.dart';
 
-import '../../common/constants/app_sizes.dart';
-import '../../common/providers/providers.dart';
-import '../../common/widgets/task_item.dart';
+import '../../../../common/constants/app_sizes.dart';
+import '../../../../common/providers/task_list_provider.dart';
+import '../../../../common/widgets/task_item.dart';
 import '../new_task/new_task.dart';
+import '../tasks_info/tasks_info.dart';
 
 class TasksList extends ConsumerWidget {
-  const TasksList({Key? key}) : super(key: key);
+  final TaskListType type;
+
+  const TasksList({required this.type});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tasks = ref.watch(taskListProvider);
+    final tasks = ref.watch(taskListProvider(type));
 
     return Stack(
       children: [
@@ -25,15 +27,15 @@ class TasksList extends ConsumerWidget {
                 shrinkWrap: true,
                 itemCount: tasks.length,
                 separatorBuilder: (context, position) => dividerGrey,
-                itemBuilder: (context, position) => TaskItem(task: tasks[position]),
+                  itemBuilder: (context, position) => TaskItem(task: tasks[position]),
               ),
             ],
           ),
         ),
         Positioned(
           right: 5,
-            bottom: 8,
-            child: ButtonPannel()),
+          bottom: 8,
+          child: ButtonPannel()),
       ],
     );
   }

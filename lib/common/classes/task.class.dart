@@ -9,7 +9,7 @@ part 'task.class.g.dart';
 class Task with _$Task {
   const factory Task({
     required String id,
-    required String task,
+    required String name,
     required TaskPriority priority,
     required bool isComplete,
   }) = _Task;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/common/constants/app_sizes.dart';
 
-import '../../../common/widgets/common_dialog.dart';
+import '../../../../common/widgets/common_dialog.dart';
+
 
 class TasksInfo extends StatelessWidget {
   const TasksInfo({Key? key}) : super(key: key);
