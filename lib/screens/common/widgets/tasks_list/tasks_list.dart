@@ -7,8 +7,9 @@ import 'package:todolist/common/theme/theme.dart';
 import '../../../../common/constants/app_sizes.dart';
 import '../../../../common/enums/task.enum.dart';
 import '../../../../common/providers/task_list_provider.dart';
-import '../../../../common/widgets/snack_error.dart';
+import '../../../../common/widgets/snack_messages.dart';
 import '../../../../common/widgets/task_item.dart';
+import '../new_task/new_task.dart';
 import '../tasks_info/tasks_info.dart';
 
 class TasksList extends ConsumerWidget {
@@ -80,18 +81,18 @@ class ButtonPannel extends ConsumerWidget {
             child: FloatingActionButton(
               backgroundColor: lightTheme.primaryColor,
               onPressed: () async {
-                // final t = Task(id: '1', name: 'Read 10 pages', priority: TaskPriority.high, isComplete: false);
+                // final t = Task(id: '2', name: 'Do my bed', priority: TaskPriority.high, isComplete: false);
                 // await TaskService().create(t);
                 // ref.read(taskListProvider(TaskListType.all).notifier).append(t);
                 // print(t);
 
-                final items = await TaskService().list();
-                print(items);
+                // final items = await TaskService().list();
+                // print(items);
 
-              //   showDialog<String>(
-              //     context: context,
-              //     builder: (BuildContext context) => NewTask()
-              // );
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => NewTask()
+              );
               },
               child: Icon(Icons.add),
             ),

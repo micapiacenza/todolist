@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:todolist/common/services/hive.service.dart';
 
 import '../classes/task.class.dart';
@@ -22,8 +24,11 @@ class TaskService extends HiveService{
   Future<bool> create(Task task) async {
     try {
       final box = await getBox(boxName);
-      await box.put(task.id, task.toJson());
+      final id = shortHash(UniqueKey());
+
+      await box.put(id.toString(), task.toJson());
       return true;
+
     } catch (e) {
       print('Create task service: ${e}');
       return false;

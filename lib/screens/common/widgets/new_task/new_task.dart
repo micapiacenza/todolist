@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todolist/common/constants/app_sizes.dart';
-import 'package:todolist/common/widgets/snack_error.dart';
+import 'package:todolist/common/widgets/snack_messages.dart';
 
-import '../../../../common/providers/providers.dart';
+import '../../../../common/providers/task_form.provider.dart';
 import '../../../../common/widgets/common_dialog.dart';
 
 class NewTask extends ConsumerWidget {
@@ -11,14 +11,19 @@ class NewTask extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskprovider = ref.watch(taskFormProvider.notifier);
+    final taskprovider = ref.read(taskFormProvider.notifier);
+    final task = ref.watch(taskFormProvider);
 
     return CommonDialog(
       title: 'New Task',
       functionOk: () async {
-        final success = taskprovider.submit();
+        final success = await taskprovider.submit();
         if (success == null) {
           SnackError(message: 'Ops, something went wrong...');
+          return;
+        } else if(success) {
+          SuccessError(message: 'New task has been added to your to-do list!');
+          Navigator.pop(context);
         }
       },
       child: Form(
