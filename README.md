@@ -8,9 +8,13 @@ A flutter todo list application.
 - Data Persistence: https://docs.hivedb.dev/#/
 - State Management: https://riverpod.dev/
 
-## Support:
+## Supported platforms:
 
-This app is supported for Android, iOS & Web.
+Responsive for mobile and web.
+- Android
+- iOS
+- Web
+
 
 ## How to run:
 
