@@ -32,6 +32,6 @@ class CommonDialog extends StatelessWidget {
           text: 'OK',
         )
       ],
-    );;
+    );
   }
 }

@@ -21,7 +21,8 @@ class NewTask extends ConsumerWidget {
         if (success == null) {
           SnackError(message: 'Ops, something went wrong...');
           return;
-        } else if(success) {
+        }
+        if(success) {
           SuccessError(message: 'New task has been added to your to-do list!');
           Navigator.pop(context);
         }
@@ -32,7 +33,7 @@ class NewTask extends ConsumerWidget {
           children: [
             Text('What do you have to do?'),
             TextFormField(
-              controller: taskprovider.taskController,
+              controller: taskprovider.taskNameController,
               validator: taskprovider.taskValidator,
             ),
             gapH24,
@@ -40,7 +41,7 @@ class NewTask extends ConsumerWidget {
             Slider(
                 value: 2,
                 max: 3,
-                divisions: 3,
+                divisions: 2,
                 onChanged: (double val) {
                   print(val);
                 },
