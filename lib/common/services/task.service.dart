@@ -25,15 +25,21 @@ class TaskService extends HiveService{
       await box.put(task.id, task.toJson());
       return true;
     } catch (e) {
-      print(e);
+      print('Create task service: ${e}');
       return false;
     }
   }
 
   /// Delete task
-  Future<void> delete(String id) async {
-    final tasksBox = await getBox(boxName);
-    await tasksBox.delete(id);
+  Future<bool> delete(String id) async {
+    try {
+      final box = await getBox(boxName);
+      await box.delete(id);
+      return true;
+    } catch (e) {
+      print('Delete task service: ${e}');
+      return false;
+    }
   }
 
   /// Mark task as complete

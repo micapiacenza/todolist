@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todolist/common/classes/task.class.dart';
+import 'package:todolist/common/services/task.service.dart';
 import 'package:todolist/common/theme/theme.dart';
 
 import '../../../../common/constants/app_sizes.dart';
+import '../../../../common/enums/task_priority.dart';
 import '../../../../common/providers/task_list_provider.dart';
+import '../../../../common/widgets/snack_error.dart';
 import '../../../../common/widgets/task_item.dart';
-import '../new_task/new_task.dart';
 import '../tasks_info/tasks_info.dart';
 
 class TasksList extends ConsumerWidget {
@@ -27,7 +30,28 @@ class TasksList extends ConsumerWidget {
                 shrinkWrap: true,
                 itemCount: tasks.length,
                 separatorBuilder: (context, position) => dividerGrey,
-                  itemBuilder: (context, position) => TaskItem(task: tasks[position]),
+                itemBuilder: (context, position) {
+                  final task = tasks[position];
+
+                  return Container(
+                  color: lightTheme.errorColor,
+                  child: Dismissible(
+                      key: Key(task.id),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (_) async {
+                        await TaskService().delete(task.id);
+                        ref.read(taskListProvider(type).notifier).delete(position);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackError(message: 'Task ${task.name} has been removed')
+                        );
+                      },
+                      child: Container(
+                        color: lightTheme.canvasColor,
+                          child: TaskItem(task: task))
+                  ),
+                );
+                },
               ),
             ],
           ),
@@ -41,11 +65,11 @@ class TasksList extends ConsumerWidget {
   }
 }
 
-class ButtonPannel extends StatelessWidget {
+class ButtonPannel extends ConsumerWidget {
   const ButtonPannel({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Align(
       alignment: Alignment.bottomRight,
       child: Column(
@@ -55,10 +79,20 @@ class ButtonPannel extends StatelessWidget {
             width: 40,
             child: FloatingActionButton(
               backgroundColor: lightTheme.primaryColor,
-              onPressed: () => showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => NewTask()
-              ),
+              onPressed: () async {
+                // final t = Task(id: '1', name: 'Read 10 pages', priority: TaskPriority.high, isComplete: false);
+                // await TaskService().create(t);
+                // ref.read(taskListProvider(TaskListType.all).notifier).append(t);
+                // print(t);
+
+                final items = await TaskService().list();
+                print(items);
+
+              //   showDialog<String>(
+              //     context: context,
+              //     builder: (BuildContext context) => NewTask()
+              // );
+              },
               child: Icon(Icons.add),
             ),
           ),
