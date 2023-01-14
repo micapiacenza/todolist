@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist/common/services/hive.service.dart';
 
 import '../classes/task.class.dart';
+import '../enums/task.enum.dart';
 
 class TaskService extends HiveService{
   static const boxName = 'task';
@@ -50,6 +51,21 @@ class TaskService extends HiveService{
   /// Mark task as complete
 
 
+  /// Switch case for task priority
+  String getPriority(TaskPriority priority) {
+    switch (priority) {
+      case TaskPriority.low:
+        return 'Low';
+      case TaskPriority.medium:
+        return 'Medium';
+      case TaskPriority.high:
+        return 'High';
+      default:
+        return 'Low';
+    }
+  }
+
   /// Set task priority
+
 
 }
