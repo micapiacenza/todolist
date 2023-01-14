@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist/common/constants/app_sizes.dart';
 
 import '../classes/task.class.dart';
+import '../theme/theme.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
@@ -20,7 +21,18 @@ class TaskItem extends StatelessWidget {
             value = value!;
            }),
           gapW12,
-          Text('${task.name}'),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('${task.name}'),
+              gapH8,
+              Text('${task.priority}',
+              style: TextStyle(
+                color: lightTheme.disabledColor,
+                fontSize: 12,
+              ),),
+            ],
+          )
         ],
       ),
     );

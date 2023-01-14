@@ -70,40 +70,38 @@ class ButtonPannel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Expanded(
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Column(
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              child: FloatingActionButton(
-                backgroundColor: lightTheme.primaryColor,
-                onPressed: () async {
-                  showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => NewTask()
-                );
-                },
-                child: Icon(Icons.add),
-              ),
+    return Padding(
+      padding: EdgeInsets.only(top: Sizes.p8, right: Sizes.p8),
+      child: Column(
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            child: FloatingActionButton(
+              backgroundColor: lightTheme.primaryColor,
+              onPressed: () async {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => NewTask()
+              );
+              },
+              child: Icon(Icons.add),
             ),
-            gapH12,
-            Container(
-              height: 40,
-              width: 40,
-              child: FloatingActionButton(
-                backgroundColor: lightTheme.primaryColor,
-                onPressed: () => showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => TasksInfo()
-                ),
-                child: Icon(Icons.info_outlined),
+          ),
+          gapH12,
+          Container(
+            height: 40,
+            width: 40,
+            child: FloatingActionButton(
+              backgroundColor: lightTheme.primaryColor,
+              onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => TasksInfo()
               ),
-            )
-          ],
-        ),
+              child: Icon(Icons.info_outlined),
+            ),
+          )
+        ],
       ),
     );
   }

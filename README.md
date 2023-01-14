@@ -29,4 +29,14 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - To view info, click on the floating action button.
 - To dismiss modals, click outside of the modal.
 
+## Requirements Progress:
+
+- Add and view tasks (completed)
+- Delete a task (completed)
+- Complete a task (wip)
+- Set a priority for my tasks (wip)
+- View the tasks sorted by priority and name (wip)
+- View the number of total and completed tasks(completed)
+
+
 
