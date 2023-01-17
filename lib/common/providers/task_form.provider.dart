@@ -10,7 +10,7 @@ import '../services/task.service.dart';
 class TaskFormProvider extends StateNotifier<Task> {
   late final Ref ref;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController taskController = TextEditingController();
+  final TextEditingController taskNameController = TextEditingController();
 
   TaskFormProvider(this.ref, Task model) : super(model) {
     load(model);
@@ -19,12 +19,12 @@ class TaskFormProvider extends StateNotifier<Task> {
 
   load(Task task) {
     state = task;
-    taskController.text = task.name;
+    taskNameController.text = task.name;
   }
 
   formListener() {
-    taskController.addListener(() {
-      state = state.copyWith(name: taskController.text);
+    taskNameController.addListener(() {
+      state = state.copyWith(name: taskNameController.text);
     });
   }
 
