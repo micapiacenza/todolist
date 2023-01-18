@@ -13,7 +13,7 @@ A flutter todo list application.
 Responsive for mobile and web.
 - Android
 - iOS
-- Web
+- Web (Currently has some issues due to Hive needing other setup for web)
 
 
 ## How to run:

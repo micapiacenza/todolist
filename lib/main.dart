@@ -8,7 +8,7 @@ import 'common/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupHive();
+  await setupHiveMobile();
   await Hive.initFlutter();
   runApp(ProviderScope(child: MyApp()));
 }

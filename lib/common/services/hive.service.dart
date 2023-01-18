@@ -1,7 +1,15 @@
+import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-Future<void> setupHive() async {
+// TODO: Finish web setup
+// Future<void> setupHiveWeb() async {
+//   final appDocumentDir = await Directory.systemTemp.createTemp();
+//   Hive.init(appDocumentDir.path);
+// }
+
+
+Future<void> setupHiveMobile() async {
   final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
 }
