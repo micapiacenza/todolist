@@ -12,7 +12,6 @@ class NewTask extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final taskprovider = ref.read(taskFormProvider.notifier);
-    final task = ref.watch(taskFormProvider);
 
     return CommonDialog(
       title: 'New Task',

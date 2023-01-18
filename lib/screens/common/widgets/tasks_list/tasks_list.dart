@@ -56,10 +56,7 @@ class TasksList extends ConsumerWidget {
             ],
           ),
         ),
-        Positioned(
-          right: 5,
-          bottom: 8,
-          child: ButtonPannel()),
+        ButtonPannel(),
       ],
     );
   }
