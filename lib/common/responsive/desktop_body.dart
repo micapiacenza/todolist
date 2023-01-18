@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../screens/all_tasks/all_tasks.dart';
 import '../../screens/completed_tasks_list/completed_tasks_list.dart';
 import '../theme/theme.dart';
+import '../widgets/multi_floating_action_button.dart';
 
 class DesktopBody extends StatelessWidget {
   const DesktopBody({Key? key}) : super(key: key);
@@ -24,6 +25,12 @@ class DesktopBody extends StatelessWidget {
               ],
 
             ),
+          ),
+          floatingActionButton: MultiFloatingActionButton(
+            children: [
+              AddButton(),
+              InfoButton()
+            ],
           ),
           body: TabBarView(
             children: [
